@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GORDON FREEMAN — Биография</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+        --hl-orange: #ff7b00;
+        --hl-dark:   #1a0f05;
+        --doom-red:  #c81010;
+        --ss-yellow: #f5c518;
+        --duke-blue: #1e5fa8;
+        --crt-green: #4dff4d;
+        --discord:   #5865F2;
+    }
+
+    html, body {
+        background: #000;
+        color: #e8d5b0;
+        font-family: 'Share Tech Mono', monospace;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    /* ===== ФОН ВСЕГО САЙТА (тёмная геймерская комната) ===== */
+    body {
+        background-image:
+            linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.6)),
+            url('fon.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    /* ===== CRT-эффект поверх всего ===== */
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+            repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0.18) 0px,
+                rgba(0,0,0,0.18) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+        pointer-events: none;
+        z-index: 9999;
+    }
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.8) 100%);
+        pointer-events: none;
+        z-index: 9998;
+    }
+
+    /* ===== Шапка в стиле HUD ===== */
+    .hud-top {
+        background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(15,5,25,0.7));
+        border-bottom: 3px solid var(--hl-orange);
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'VT323', monospace;
+        font-size: 22px;
+        color: var(--hl-orange);
+        text-shadow: 0 0 8px var(--hl-orange);
+        letter-spacing: 2px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(6px);
+    }
+    .hud-top .left  { color: var(--doom-red);  text-shadow: 0 0 8px var(--doom-red); }
+    .hud-top .mid   { color: var(--ss-yellow); text-shadow: 0 0 8px var(--ss-yellow); }
+    .hud-top .right { color: var(--duke-blue); text-shadow: 0 0 8px var(--duke-blue); }
+
+    /* ===== Контейнер ===== */
+    .wrap {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+    }
+
+    /* ===== ПРИВЕТСТВИЕ ===== */
+    .greeting {
+        text-align: center;
+        margin-bottom: 24px;
+        padding: 30px 26px 26px;
+        border: 3px solid var(--crt-green);
+        box-shadow: 0 0 30px rgba(77,255,77,0.35), inset 0 0 20px rgba(77,255,77,0.08);
+        position: relative;
+        overflow: hidden;
+        animation: greetingGlow 2.5s ease-in-out infinite alternate;
+        background: rgba(5, 15, 5, 0.6);
+        backdrop-filter: blur(5px);
+    }
+    .greeting::before {
+        content: "◤ NPC // DIALOGUE ◢";
+        position: absolute;
+        top: -12px;
+        left: 20px;
+        background: #000;
+        padding: 0 10px;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 8px;
+        color: var(--crt-green);
+        text-shadow: 0 0 8px var(--crt-green);
+        letter-spacing: 1px;
+        z-index: 2;
+    }
+
+    .greeting .hello {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 24px;
+        color: var(--crt-green);
+        text-shadow:
+            2px 2px 0 #000,
+            0 0 15px var(--crt-green),
+            0 0 30px rgba(77,255,77,0.6);
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 1;
+    }
+    .greeting .hello-cursor {
+        display: inline-block;
+        color: var(--crt-green);
+        text-shadow: 0 0 12px var(--crt-green);
+        animation: blink 0.9s steps(2) infinite;
+    }
+
+    /* ===== Диалог под приветствием ===== */
+    .greeting .dialogue {
+        margin-top: 20px;
+        padding: 18px 20px;
+        background: rgba(0,0,0,0.55);
+        border-left: 4px solid var(--crt-green);
+        border-right: 4px solid var(--crt-green);
+        font-family: 'VT323', monospace;
+        font-size: 20px;
+        line-height: 1.55;
+        color: #d8ffd8;
+        text-align: left;
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 4px rgba(77,255,77,0.35);
+        position: relative;
+        z-index: 1;
+    }
+    .greeting .dialogue::before {
+        content: "► SCIENTIST:";
+        display: block;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 9px;
+        color: var(--crt-green);
+        text-shadow: 0 0 8px var(--crt-green);
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+    }
+    .greeting .dialogue .hl-orange {
+        color: var(--hl-orange);
+        text-shadow: 0 0 8px rgba(255,123,0,0.7);
+        font-weight: bold;
+    }
+    .greeting .dialogue .warn {
+        color: var(--doom-red);
+        text-shadow: 0 0 8px rgba(200,16,16,0.8);
+        font-weight: bold;
+    }
+    .greeting .dialogue .safe {
+        color: var(--ss-yellow);
+        text-shadow: 0 0 10px rgba(245,197,24,0.9);
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    @keyframes greetingGlow {
+        from { box-shadow: 0 0 25px rgba(77,255,77,0.25), inset 0 0 20px rgba(77,255,77,0.05); }
+        to   { box-shadow: 0 0 45px rgba(77,255,77,0.5),  inset 0 0 25px rgba(77,255,77,0.12); }
+    }
+
+    /* ===== Главный заголовок (имя и ник) ===== */
+    header {
+        text-align: center;
+        padding: 50px 20px 40px;
+        border: 4px double var(--hl-orange);
+        background: rgba(10, 5, 20, 0.6);
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 40px rgba(255,123,0,0.4), inset 0 0 40px rgba(255,123,0,0.15);
+        margin-bottom: 50px;
+        position: relative;
+    }
+    header::before, header::after {
+        content: "◆";
+        position: absolute;
+        font-size: 20px;
+        color: var(--ss-yellow);
+        top: 12px;
+    }
+    header::before { left: 16px; }
+    header::after  { right: 16px; }
+
+    .tagline {
+        font-family: 'VT323', monospace;
+        font-size: 20px;
+        color: var(--doom-red);
+        letter-spacing: 4px;
+        text-shadow: 0 0 8px var(--doom-red);
+        margin-bottom: 14px;
+    }
+
+    h1 {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 34px;
+        color: var(--hl-orange);
+        text-shadow:
+            3px 3px 0 #000,
+            0 0 20px var(--hl-orange),
+            0 0 40px rgba(255,123,0,0.5);
+        line-height: 1.4;
+        letter-spacing: 2px;
+    }
+
+    .subtitle {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 12px;
+        color: var(--ss-yellow);
+        margin-top: 18px;
+        letter-spacing: 3px;
+    }
+
+    /* ===== Разделитель ===== */
+    .divider {
+        text-align: center;
+        margin: 40px 0 30px;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 10px;
+        color: var(--hl-orange);
+        letter-spacing: 6px;
+    }
+    .divider span {
+        display: inline-block;
+        padding: 0 20px;
+        border-top: 2px dashed rgba(255,123,0,0.4);
+        border-bottom: 2px dashed rgba(255,123,0,0.4);
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    /* ===== Карточки-секции ===== */
+    .card {
+        background: rgba(8, 5, 18, 0.6);
+        backdrop-filter: blur(6px);
+        border: 3px solid var(--hl-orange);
+        border-left: 8px solid var(--doom-red);
+        padding: 30px 32px;
+        margin-bottom: 30px;
+        position: relative;
+        box-shadow:
+            0 0 25px rgba(255,123,0,0.2),
+            inset 0 0 25px rgba(255,123,0,0.05);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .card:hover {
+        transform: translateX(6px);
+        background: rgba(15, 10, 30, 0.75);
+        box-shadow:
+            0 0 40px rgba(255,123,0,0.45),
+            inset 0 0 30px rgba(255,123,0,0.1);
+    }
+    .card.blue   { border-left-color: var(--duke-blue); }
+    .card.yellow { border-left-color: var(--ss-yellow); }
+    .card.red    { border-left-color: var(--doom-red); }
+
+    .card h2 {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 16px;
+        color: var(--hl-orange);
+        text-shadow: 2px 2px 0 #000, 0 0 12px rgba(255,123,0,0.6);
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .card.blue   h2 { color: var(--duke-blue); text-shadow: 2px 2px 0 #000, 0 0 12px rgba(30,95,168,0.8); }
+    .card.yellow h2 { color: var(--ss-yellow); text-shadow: 2px 2px 0 #000, 0 0 12px rgba(245,197,24,0.7); }
+    .card.red    h2 { color: var(--doom-red);  text-shadow: 2px 2px 0 #000, 0 0 12px rgba(200,16,16,0.7); }
+
+    .card p {
+        font-family: 'VT323', monospace;
+        font-size: 21px;
+        line-height: 1.55;
+        color: #f0e0c0;
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 4px rgba(0,0,0,0.9);
+    }
+    .card p + p { margin-top: 14px; }
+
+    /* ===== Цветовые акценты ===== */
+    .accent { color: var(--ss-yellow); text-shadow: 0 0 6px rgba(245,197,24,0.6); }
+    .accent-red { color: var(--doom-red); text-shadow: 0 0 6px rgba(200,16,16,0.6); }
+    .accent-orange { color: var(--hl-orange); text-shadow: 0 0 6px rgba(255,123,0,0.6); }
+
+    .accent-mario { color: #e63946; text-shadow: 0 0 8px rgba(230,57,70,0.7); font-weight: bold; }
+    .accent-sega { color: #0060a8; text-shadow: 0 0 10px rgba(0,150,255,0.85), 0 0 3px rgba(0,150,255,0.5); font-weight: bold; }
+    .accent-xbox { color: #107C10; text-shadow: 0 0 10px rgba(60,200,60,0.9), 0 0 3px rgba(60,200,60,0.5); font-weight: bold; }
+    .accent-duke { color: #ff8c1a; text-shadow: 0 0 10px rgba(255,140,26,0.9), 0 0 3px rgba(255,140,26,0.5); font-weight: bold; }
+    .accent-ultrakill { color: #ff2b2b; text-shadow: 0 0 10px rgba(255,43,43,0.9), 0 0 3px rgba(255,43,43,0.5); font-weight: bold; }
+    .accent-gmod { color: #4dc9ff; text-shadow: 0 0 10px rgba(77,201,255,0.9), 0 0 3px rgba(77,201,255,0.5); font-weight: bold; }
+    .accent-web { color: #61dafb; text-shadow: 0 0 10px rgba(97,218,251,0.9), 0 0 3px rgba(97,218,251,0.5); font-weight: bold; }
+    .accent-tf2 { color: #ffb84d; text-shadow: 0 0 10px rgba(255,184,77,0.9), 0 0 3px rgba(255,184,77,0.5); font-weight: bold; }
+    .accent-tiktok { color: #25F4EE; text-shadow: 0 0 10px rgba(37,244,238,0.9), 0 0 3px rgba(37,244,238,0.5); font-weight: bold; }
+    .accent-re { color: #ff1f1f; text-shadow: 0 0 12px rgba(255,31,31,1), 0 0 25px rgba(255,31,31,0.6), 0 0 3px rgba(255,31,31,0.8); font-weight: bold; letter-spacing: 0.5px; }
+    .accent-quake { color: #b8542a; text-shadow: 0 0 12px rgba(184,84,42,1), 0 0 25px rgba(184,84,42,0.6), 0 0 3px rgba(200,60,20,0.8); font-weight: bold; letter-spacing: 0.5px; }
+    .accent-wolf { color: #8b0f0f; text-shadow: 0 0 12px rgba(139,15,15,1), 0 0 25px rgba(180,20,20,0.7), 0 0 3px rgba(200,30,30,0.9); font-weight: bold; letter-spacing: 0.5px; }
+    .accent-l4d { color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.5), 0 0 3px rgba(255,255,255,0.8); font-weight: bold; letter-spacing: 0.5px; }
+    .accent-l4d .four { color: #e81224; text-shadow: 0 0 12px rgba(232,18,36,1), 0 0 25px rgba(232,18,36,0.7), 0 0 3px rgba(255,40,40,0.9); font-weight: bold; }
+    .accent-fortnite { color: #5ec9ff; text-shadow: 0 0 12px rgba(94,201,255,1), 0 0 25px rgba(94,201,255,0.6), 0 0 3px rgba(120,220,255,0.9); font-weight: bold; letter-spacing: 0.5px; }
+    .accent-portal { color: #b8bcc0; text-shadow: 0 0 10px rgba(184,188,192,0.9), 0 0 20px rgba(184,188,192,0.5), 0 0 3px rgba(184,188,192,0.8); font-weight: bold; letter-spacing: 0.5px; }
+    .accent-portal .portal-o { color: #00b4ff; text-shadow: 0 0 12px rgba(0,180,255,1), 0 0 25px rgba(0,180,255,0.7), 0 0 3px rgba(80,200,255,0.9); font-weight: bold; }
+    .accent-minecraft { color: #e8f5e0; text-shadow: 0 0 10px rgba(255,255,255,0.95), 0 0 22px rgba(122,200,80,0.85), 0 0 38px rgba(90,180,60,0.6), 0 0 3px rgba(180,230,140,0.9); font-weight: bold; letter-spacing: 0.5px; }
+
+    /* ===== Статы ===== */
+    .stats { display: grid; gap: 16px; margin-top: 10px; }
+    .stat-row { display: flex; align-items: center; gap: 14px; }
+    .stat-label {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 9px;
+        color: var(--ss-yellow);
+        width: 120px;
+        flex-shrink: 0;
+        letter-spacing: 1px;
+    }
+    .stat-bar {
+        flex: 1;
+        height: 20px;
+        background: #000;
+        border: 2px solid var(--hl-orange);
+        position: relative;
+        overflow: hidden;
+    }
+    .stat-fill {
+        height: 100%;
+        background: repeating-linear-gradient(90deg, var(--hl-orange) 0 8px, #ff9d3d 8px 10px);
+        box-shadow: 0 0 12px var(--hl-orange);
+        transition: width 1.2s ease;
+    }
+    .stat-fill.red    { background: repeating-linear-gradient(90deg, var(--doom-red) 0 8px, #ff3030 8px 10px); box-shadow: 0 0 12px var(--doom-red); }
+    .stat-fill.yellow { background: repeating-linear-gradient(90deg, var(--ss-yellow) 0 8px, #ffe066 8px 10px); box-shadow: 0 0 12px var(--ss-yellow); }
+    .stat-fill.blue   { background: repeating-linear-gradient(90deg, var(--duke-blue) 0 8px, #4a8fd8 8px 10px); box-shadow: 0 0 12px var(--duke-blue); }
+    .stat-val {
+        font-family: 'VT323', monospace;
+        font-size: 20px;
+        color: var(--hl-orange);
+        width: 60px;
+        text-align: right;
+        flex-shrink: 0;
+    }
+
+    /* ===== Таймлайн ===== */
+    .timeline { position: relative; padding-left: 30px; margin-top: 10px; }
+    .timeline::before {
+        content: "";
+        position: absolute;
+        left: 8px; top: 8px; bottom: 8px;
+        width: 3px;
+        background: linear-gradient(180deg, var(--hl-orange), var(--doom-red));
+        box-shadow: 0 0 12px var(--hl-orange);
+    }
+    .tl-item { position: relative; margin-bottom: 24px; }
+    .tl-item::before {
+        content: "";
+        position: absolute;
+        left: -29px; top: 6px;
+        width: 14px; height: 14px;
+        background: var(--ss-yellow);
+        border: 3px solid #000;
+        box-shadow: 0 0 12px var(--ss-yellow);
+        transform: rotate(45deg);
+    }
+    .tl-year {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 11px;
+        color: var(--ss-yellow);
+        margin-bottom: 6px;
+        letter-spacing: 1px;
+    }
+    .tl-text {
+        font-family: 'VT323', monospace;
+        font-size: 20px;
+        color: #f0e0c0;
+        line-height: 1.5;
+        text-shadow: 0 0 4px rgba(0,0,0,0.9);
+    }
+
+    /* ===== Ссылки ===== */
+    .links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 10px;
+    }
+    .link-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        text-decoration: none;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 11px;
+        letter-spacing: 1px;
+        padding: 18px 16px;
+        color: #fff;
+        background: rgba(0,0,0,0.7);
+        border: 3px solid var(--hl-orange);
+        transition: all 0.25s ease;
+        text-shadow: 1px 1px 0 #000;
+        position: relative;
+    }
+    .link-btn i {
+        font-size: 18px;
+        line-height: 1;
+        transition: all 0.25s ease;
+    }
+    .link-btn:hover {
+        transform: translateY(-4px);
+        background: var(--hl-orange);
+        color: #000;
+        text-shadow: none;
+        box-shadow: 0 0 25px var(--hl-orange);
+    }
+    .link-btn:hover i {
+        color: #000;
+        text-shadow: none;
+    }
+
+    /* Telegram */
+    .link-btn.tg      { border-color: #0088cc; }
+    .link-btn.tg i    { color: #29b6f6; text-shadow: 0 0 8px rgba(41,182,246,0.8); }
+    .link-btn.tg:hover      { background: #0088cc; box-shadow: 0 0 25px #0088cc; }
+    .link-btn.tg:hover i    { color: #fff; text-shadow: none; }
+
+    /* Steam */
+    .link-btn.steam   { border-color: #66c0f4; }
+    .link-btn.steam i { color: #66c0f4; text-shadow: 0 0 8px rgba(102,192,244,0.8); }
+    .link-btn.steam:hover   { background: #66c0f4; box-shadow: 0 0 25px #66c0f4; color: #000; }
+    .link-btn.steam:hover i { color: #0f1c2e; text-shadow: none; }
+
+    /* Discord */
+    .link-btn.discord   { border-color: var(--discord); }
+    .link-btn.discord i { color: var(--discord); text-shadow: 0 0 8px rgba(88,101,242,0.8); }
+    .link-btn.discord:hover   { background: var(--discord); box-shadow: 0 0 25px var(--discord); }
+    .link-btn.discord:hover i { color: #fff; text-shadow: none; }
+
+    /* YouTube */
+    .link-btn.yt      { border-color: #ff0000; }
+    .link-btn.yt i    { color: #ff3030; text-shadow: 0 0 8px rgba(255,48,48,0.8); }
+    .link-btn.yt:hover      { background: #ff0000; box-shadow: 0 0 25px #ff0000; }
+    .link-btn.yt:hover i    { color: #fff; text-shadow: none; }
+
+    /* ===== АВАТАРКА ПОД ССЫЛКАМИ ===== */
+    .avatar-bottom {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 26px;
+        border-top: 2px dashed rgba(255,123,0,0.35);
+    }
+    .avatar-bottom img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center top;
+        border: 4px solid var(--hl-orange);
+        box-shadow: 0 0 30px rgba(255,123,0,0.7), 0 0 60px rgba(255,123,0,0.3), inset 0 0 20px rgba(0,0,0,0.5);
+        background: #3a2418;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .avatar-bottom img:hover {
+        transform: scale(1.05) rotate(-2deg);
+        box-shadow: 0 0 45px rgba(255,123,0,1), 0 0 90px rgba(255,123,0,0.5);
+    }
+    .avatar-bottom .caption {
+        margin-top: 14px;
+        font-family: 'VT323', monospace;
+        font-size: 20px;
+        color: var(--hl-orange);
+        letter-spacing: 3px;
+        text-shadow: 0 0 8px rgba(255,123,0,0.7);
+    }
+    .avatar-bottom .ai-credit {
+        margin-top: 10px;
+        font-family: 'VT323', monospace;
+        font-size: 19px;
+        color: #4dabf7;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(77,171,247,0.9), 0 0 20px rgba(77,171,247,0.4);
+    }
+    .avatar-bottom .ai-credit .cursor {
+        display: inline-block;
+        color: #4dabf7;
+        animation: blink 0.9s steps(2) infinite;
+    }
+
+    /* ===== Футер ===== */
+    footer {
+        text-align: center;
+        padding: 30px 20px;
+        font-family: 'VT323', monospace;
+        font-size: 18px;
+        color: rgba(255,180,90,0.85);
+        border-top: 3px double var(--hl-orange);
+        letter-spacing: 3px;
+        background: rgba(0,0,0,0.55);
+        backdrop-filter: blur(5px);
+        text-shadow: 0 0 6px rgba(0,0,0,0.9);
+    }
+    footer .blink { animation: blink 1s steps(2) infinite; color: var(--doom-red); }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .status {
+        display: inline-block;
+        color: var(--crt-green);
+        text-shadow: 0 0 8px var(--crt-green);
+        font-family: 'VT323', monospace;
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+    .status::after { content: "_"; animation: blink 0.9s steps(2) infinite; }
+
+    /* ===== Адаптив ===== */
+    @media (max-width: 600px) {
+        h1 { font-size: 20px; }
+        .hud-top { font-size: 16px; padding: 8px 12px; }
+        .hud-top .mid { display: none; }
+        .card { padding: 22px 18px; }
+        .card h2 { font-size: 12px; }
+        .card p, .tl-text { font-size: 18px; }
+        .stat-label { font-size: 7px; width: 90px; }
+        .stat-val { font-size: 16px; width: 45px; }
+        .link-btn { font-size: 9px; padding: 16px 12px; gap: 8px; }
+        .link-btn i { font-size: 15px; }
+        .greeting { padding: 24px 18px 20px; }
+        .greeting .hello { font-size: 16px; }
+        .greeting .dialogue { font-size: 17px; padding: 14px 14px; }
+        .greeting::before { font-size: 7px; }
+        .avatar-bottom img { width: 110px; height: 110px; }
+        .avatar-bottom .caption { font-size: 17px; }
+        .avatar-bottom .ai-credit { font-size: 16px; }
+        body { background-attachment: scroll; }
+    }
+</style>
+</head>
+<body>
+
+<!-- Верхний HUD в стиле шутеров -->
+<div class="hud-top">
+    <div class="left">◤ HEALTH 100%</div>
+    <div class="mid">★ GORDON FREEMAN ★</div>
+    <div class="right">AMMO ∞ ◢</div>
+</div>
+
+<div class="wrap">
+
+    <!-- ================= ПРИВЕТСТВИЕ + ДИАЛОГ ================= -->
+    <div class="greeting">
+        <div class="hello">ЗДРАВСТВУЙТЕ!<span class="hello-cursor">_</span></div>
+
+        <div class="dialogue">
+            Добро пожаловать в Биографический сайт <span class="hl-orange">ЧЕРНАЯ МЕЗА!</span>
+            Сами вы его выбрали или он выбрал за вас — это лучший сайт из оставшихся.
+            Я горжусь тем, что называю свое творчество и увлечения своим вторым домом.
+            Итак, ждут вас прекрасные ролики или же вас ждут неизвестные дали?
+            Добро пожаловать в <span class="hl-orange">«ЧЕРНАЯ МЕЗА»</span> —
+            <span class="warn">ЗДЕСЬ</span>...<span class="safe">БЕЗОПАСНО!!!!</span>
+        </div>
+    </div>
+
+    <!-- ================= ШАПКА (имя и ник) ================= -->
+    <header>
+        <div class="tagline">&gt; SUBJECT FILE // CLASSIFIED &lt;</div>
+        <h1>ИВАН МУРАШЕВ</h1>
+        <div class="subtitle">NICKNAME: GORDON FREEMAN</div>
+    </header>
+
+    <!-- ================= О СЕБЕ (досье) ================= -->
+    <section class="card">
+        <h2>▶ ДОСЬЕ // БИОГРАФИЯ</h2>
+        <p>
+            <span class="accent">Иван Мурашев Александрович</span>, известный под любимым никнеймом
+            <span class="accent-orange">Gordon Freeman</span> — 18-летний парень, обычный
+            начинающий разработчик и YouTube игровой-блогер.
+        </p>
+        <p>
+            Его карьера и первая любовь к играм началась ещё с детства: когда на даче он
+            нашёл легендарную приставку <span class="accent-sega">Sega Mega Drive</span>
+            (или что-то в этом духе), а дома ему подарили легендарную
+            <span class="accent-xbox">Xbox 360</span>.
+        </p>
+        <p>
+            Первым его кумиром в мире игр стал <span class="accent-mario">Super Mario</span>,
+            а вторым — тот, кто остался с ним на всю жизнь:
+            <span class="accent-orange">Half-Life</span>. А потом пошли:
+            <span class="accent-red">DOOM</span>,
+            <span class="accent-portal">P<span class="portal-o">o</span>rtal</span>,
+            <span class="accent">Serious Sam</span>,
+            <span class="accent-re">Resident Evil</span>,
+            <span class="accent-fortnite">Fortnite</span>,
+            <span class="accent-quake">Quake</span>,
+            <span class="accent-wolf">Wolfenstein</span>,
+            <span class="accent-minecraft">Minecraft</span>,
+            <span class="accent-l4d">Left <span class="four">4</span> Dead</span>,
+            <span class="accent-duke">Duke Nukem</span>, <span class="accent-tf2">Team Fortress 2</span>
+            и <span class="accent-ultrakill">ULTRAKILL</span>.
+        </p>
+        <p>
+            Сейчас Иван воплощает свои творческие идеи и анимирует их в
+            <span class="accent-gmod">Garry's Mod</span> на своём YouTube-канале
+            в стиле <span class="accent-orange">«Старой Школы»</span>.
+        </p>
+    </section>
+
+    <!-- ================= СТАТЫ ================= -->
+    <section class="card yellow">
+        <h2>▶ ПАРАМЕТРЫ ПЕРСОНАЖА</h2>
+        <div class="stats">
+            <div class="stat-row">
+                <div class="stat-label">ВОЗРАСТ</div>
+                <div class="stat-bar"><div class="stat-fill yellow" style="width:18%"></div></div>
+                <div class="stat-val" id="ageVal">18 ЛЕТ</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-label">РАЗРАБОТКА</div>
+                <div class="stat-bar"><div class="stat-fill blue" style="width:34%"></div></div>
+                <div class="stat-val">34%</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-label">YOUTUBE</div>
+                <div class="stat-bar"><div class="stat-fill red" style="width:90%"></div></div>
+                <div class="stat-val">90%</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-label">GAMING</div>
+                <div class="stat-bar"><div class="stat-fill" style="width:100%"></div></div>
+                <div class="stat-val">MAX</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ПРОФЕССИЯ ================= -->
+    <section class="card blue">
+        <h2>▶ ПРОФЕССИЯ // РАЗРАБОТЧИК</h2>
+        <p>
+            Иван — <span class="accent">разработчик</span> пока что
+            <span class="accent-orange">практически с первого уровня</span>.
+            Он пока ещё <span class="accent">учится</span> для этой профессии.
+        </p>
+        <p>
+            Основное направление: <span class="accent-web">Веб-Разработка</span>.
+        </p>
+        <div class="divider"><span>◆ ◆ ◆ ◆ ◆</span></div>
+        <p style="text-align:center;">
+            <span class="status">STATUS: ONLINE</span>
+        </p>
+    </section>
+
+    <!-- ================= YOUTUBE КАРЬЕРА ================= -->
+    <section class="card red">
+        <h2>▶ YOUTUBE // КАРЬЕРА</h2>
+        <p>
+            <span class="accent">YouTube-канал Gordon</span> — это творчество в золотую эпоху
+            шутеров нулевых. Здесь оживают <span class="accent-orange">Half-Life</span>,
+            <span class="accent">Serious Sam</span>, <span class="accent-tf2">Team Fortress 2</span>
+            и, конечно, <span class="accent-red">DOOM</span> — с анимациями, стримами
+            и прохождениями.
+        </p>
+
+        <div class="timeline" style="margin-top:24px;">
+            <div class="tl-item">
+                <div class="tl-year">► СТАРТ</div>
+                <div class="tl-text">
+                    Интро канала и первая анимация в
+                    <span class="accent-gmod">Garry's Mod</span> по
+                    <span class="accent-orange">Half-Life</span>.
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">► СЕЙЧАС</div>
+                <div class="tl-text">
+                    Видео на <span class="accent-tiktok">TikTok</span> канале и стримы.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ССЫЛКИ + АВАТАРКА ================= -->
+    <section class="card">
+        <h2>▶ КОНТАКТЫ // ССЫЛКИ</h2>
+        <div class="links-grid">
+            <a href="https://t.me/podvallambda" target="_blank" class="link-btn tg">
+                <i class="fa-brands fa-telegram"></i> TELEGRAM
+            </a>
+            <a href="https://steamcommunity.com/profiles/76561199241175648/" target="_blank" class="link-btn steam">
+                <i class="fa-brands fa-steam"></i> STEAM
+            </a>
+            <a href="https://discord.gg/bAUbpuH8Sk" target="_blank" class="link-btn discord">
+                <i class="fa-brands fa-discord"></i> DISCORD
+            </a>
+            <a href="https://www.youtube.com/@GordonFreemanHL-HL3" target="_blank" class="link-btn yt">
+                <i class="fa-brands fa-youtube"></i> YOUTUBE
+            </a>
+        </div>
+
+        <!-- АВАТАРКА ПОД ССЫЛКАМИ -->
+        <div class="avatar-bottom">
+            <img src="avatar.jpg" alt="Gordon Freeman"
+                 onerror="this.src='https://ui-avatars.com/api/?name=Gordon+Freeman&background=302b63&color=fff&size=200&bold=true'">
+            <div class="caption">&gt; GORDON FREEMAN_</div>
+            <div class="ai-credit">&gt; Создатель этого сайта — ИИ DeepSeek<span class="cursor">_</span></div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    &gt; SAVE GAME [<span class="blink">█</span>] COMPLETE — © 2026 GORDON FREEMAN &lt;
+</footer>
+
+<script>
+    // Возраст зафиксирован
+    document.getElementById('ageVal').textContent = "18 ЛЕТ";
+
+    // Анимация заполнения полосок статов при загрузке
+    window.addEventListener('load', () => {
+        document.querySelectorAll('.stat-fill').forEach(el => {
+            const w = el.style.width;
+            el.style.width = '0%';
+            setTimeout(() => { el.style.width = w; }, 200);
+        });
+    });
+</script>
+
+</body>
+</html>
